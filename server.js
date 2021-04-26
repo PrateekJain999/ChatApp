@@ -25,6 +25,10 @@ io.on('connection', function (socket) {
         io.emit('newMessage', getMessage(message.from, message.text))
         callback();
     });
+
+    socket.on('disconnect',(message)=>{
+        socket.emit('left', getMessage('Admin', `${message.from} left the chat`))
+    })
 });
 
 http.listen(port, () => {

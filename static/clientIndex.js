@@ -2,6 +2,9 @@ let socket = io();
 
 var name = window.prompt("Enter your name: ");
 
+socket.on('disconnect', ()=>{
+    socket.on('left', {from: name})
+})
 
 socket.on('newMessage', function(message){
     const formattedTime = moment(message.createdAt).format('LT');
