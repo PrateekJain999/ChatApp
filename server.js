@@ -3,7 +3,7 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const Path = require('path')
-const {getMessage} = require('./utils/message')
+const {getMessage, getLocationMessage} = require('./utils/message')
 const port = 3000;
 
 app.use("/static", express.static('./static/'));
@@ -19,11 +19,17 @@ io.on('connection', function (socket) {
 
     socket.broadcast.emit('newMessage', getMessage('Admin', 'New User Joined'));
 
-    socket.on('message', (message, callback) => {
+    socket.on('message',(message,callback) => {
         console.log(message);
 
-        io.emit('newMessage', getMessage(message.from, message.to))
+        io.emit('newMessage', getMessage(message.from, message.text))
         callback();
+    });
+
+    socket.on('createLocation',(coord) => {
+        console.log(coord);
+
+        io.emit('newLocationMessage', getLocationMessage('Admin', coord.lat, coord.lon))
     })
 
     socket.on('disconnect', () => {
