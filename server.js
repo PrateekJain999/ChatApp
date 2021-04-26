@@ -25,16 +25,6 @@ io.on('connection', function (socket) {
         io.emit('newMessage', getMessage(message.from, message.text))
         callback();
     });
-
-    socket.on('createLocation',(coord) => {
-        console.log(coord);
-
-        io.emit('newLocationMessage', getLocationMessage('Admin', coord.lat, coord.lon))
-    })
-
-    socket.on('disconnect', () => {
-        console.log("user disconnected");
-    });
 });
 
 http.listen(port, () => {

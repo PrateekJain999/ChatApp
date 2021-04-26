@@ -1,20 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html class=''>
 
 <head>
     <title>
         ChatApp
     </title>
-    <link rel="shortcut icon" type="image/jpg" href="./icon.jpg"/>
+    <link rel="shortcut icon" type="image/jpg" href="./icon.jpg" />
+
+    <style class="cp-pen-styles">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        html,
+        body {
+            background: -webkit-linear-gradient(330deg, rgb(105, 21, 214), #f0a6ca);
+            background: linear-gradient(120deg, rgb(23, 230, 68), #f0a6ca);
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body>
-    <form id="message-form">
-        <input type="text" name="message" placeholder="message">
-        <button type="submit" id="submit-btn">Submit</button>
-    </form>
 
-    <button type="button" id="send-location"> Send Location </button>
+    <h1 style="text-align: center">Messenger App</h1>
+    </br></br>
+    <form id="message-form" align="center">
+        <input type="text" style="font-size: 12pt; font-style: oblique; height: 35px; width:200px;" id="message" name="message" placeholder="message">
+        <button type="submit" id="submit-btn" style="font-size: 12pt; font-style: oblique; height: 35px; width:70px;">Submit</button></br></br>
+    </form>
     
     <script src="/socket.io/socket.io.js"></script>
     <script src="static/clientIndex.js"></script>
