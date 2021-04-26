@@ -19,15 +19,12 @@ io.on('connection', function (socket) {
 
     socket.broadcast.emit('newMessage', getMessage('Admin', 'New User Joined'));
 
-    socket.on('message',(message,callback) => {
-        console.log(message);
-
+    socket.on('message',(message) => {
         io.emit('newMessage', getMessage(message.from, message.text))
-        callback();
     });
 
-    socket.on('disconnect',(message)=>{
-        socket.emit('left', getMessage('Admin', `${message.from} left the chat`))
+    socket.on('disconnect',(name)=>{
+        io.emit('newMessage', getMessage('Admin', 'someone left the chat'))
     })
 });
 
